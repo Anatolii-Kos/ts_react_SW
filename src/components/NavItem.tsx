@@ -1,11 +1,14 @@
 import Button from "./ui/Button.jsx";
+import {SWContext} from "../utils/context.ts";
+import {useContext} from "react";
 
 interface Props {
-    changePage: (page:string)=>void;
+
     itemTitle:string;
 }
 
-const NavItem = ({itemTitle, changePage}:Props) => {
+const NavItem = ({itemTitle,}:Props) => {
+    const {changePage} = useContext(SWContext)
     return (
         <Button callback={() => changePage(itemTitle)}>{itemTitle}</Button>
     );
