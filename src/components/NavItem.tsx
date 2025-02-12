@@ -2,7 +2,6 @@ import {NavLink} from "react-router";
 import {Item} from "../utils/types";
 
 interface Props {
-
     item:Item;
 }
 

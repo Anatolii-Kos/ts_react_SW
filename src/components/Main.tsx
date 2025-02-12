@@ -3,7 +3,6 @@ import AboutMe from "./AboutMe.tsx";
 import StarWars from "./StarWars.jsx";
 import Contact from "./Contact.jsx";
 import {navItems} from "../utils/constants.js";
-
 import {Route, Routes} from "react-router";
 import ErrorPage from "./ErrorPage.tsx";
 

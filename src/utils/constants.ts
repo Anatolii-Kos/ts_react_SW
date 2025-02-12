@@ -8,7 +8,8 @@ import friend6 from "../assets/friend6.jpg";
 import friend7 from "../assets/friend7.jpg";
 import friend8 from "../assets/friend8.jpg";
 import friend9 from "../assets/friend9.jpg";
-import {Characters, Item} from "./types";
+import {Characters, Item, SWcontext} from "./types";
+import {createContext} from "react";
 
 export const base_url = 'http://sw-info-api.herokuapp.com';
 export const version = '/v1';
@@ -86,3 +87,8 @@ The original 1977 film, retroactively subtitled Episode IV: A New Hope, was foll
 All nine films, collectively referred to as the "Skywalker Saga", were nominated for Academy Awards, with wins going to the first two releases. Together with the theatrical live action "anthology" films Rogue One (2016) and Solo (2018), the combined box office revenue of the films equate to over US$10 billion, making Star Wars the third-highest-grossing film franchise in cinematic history.
 
 `
+export const Swcontext = createContext<SWcontext>({
+    title: characters[`${defaultHero}`].name,
+    changeTitle: (title: string) => console.log(title)
+    }
+)

@@ -1,5 +1,4 @@
-import friend0 from "../assets/main.jpg";
-import {base_url, version} from "./constants.ts";
+
 
 export interface HeroInfo {
     name: string;
@@ -25,4 +24,9 @@ export interface Hero {
 
 export interface Characters {
     [key: string]: Hero,
+}
+
+export interface SWcontext {
+    title: string | null,
+    changeTitle: (title: string) => void,
 }
