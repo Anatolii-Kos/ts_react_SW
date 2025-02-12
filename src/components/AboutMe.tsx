@@ -1,15 +1,20 @@
 import {useEffect, useState} from "react";
-import {base_url, period_month} from "../utils/constants.js";
+import {characters, defaultHero, period_month} from "../utils/constants.js";
 import {HeroInfo} from "../utils/types";
+import {useParams} from "react-router";
+
+
 
 const AboutMe = () => {
     const [hero, setHero] = useState({}as HeroInfo);
+    const {heroId=defaultHero} = useParams();
+
     useEffect(() => {
-        const hero = JSON.parse(localStorage.getItem("hero")??'null');
+        const hero = JSON.parse(localStorage.getItem(heroId)!);
         if (hero && ((Date.now() - hero.timestamp) < period_month)) {
             setHero(hero.payload);
         } else {
-            fetch(`${base_url}/v1/peoples/1`)
+            fetch(characters[heroId].url)
                 .then(response => response.json())
                 .then(data => {
                     const info = {
@@ -23,7 +28,7 @@ const AboutMe = () => {
                         eye_color: data.eye_color
                     } as HeroInfo;
                     setHero(info);
-                    localStorage.setItem("hero", JSON.stringify({
+                    localStorage.setItem(heroId, JSON.stringify({
                         payload: info,
                         timestamp: Date.now()
                     }));
