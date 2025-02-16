@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import {ReactNode} from "react";
 
 export interface HeroInfo {
     name: string;
@@ -29,10 +29,12 @@ export interface Characters {
 export interface SWContextValue {
     hero: string,
     changeHero: (hero: string) => void,
+    errorFlag: boolean,
+    changeErrorFlag: (error: boolean) => void,
 }
 
-export type WrapperHOC<P extends object> = (Component: React.FC<P>) => React.FC<P>;
+export type WrapperHOC<P> = (Component: React.FC<P>) => React.FC<P>;
 
 export interface WrapperProps {
-    children?: React.ReactNode | void | React.FC;
+    children?: ReactNode | void | React.FC;
 }

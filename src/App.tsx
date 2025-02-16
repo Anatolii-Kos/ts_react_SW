@@ -11,11 +11,11 @@ import { SWContext } from './utils/context.ts';
 
 function App() {
     const [hero, setHero] = useState(defaultHero);
+    const [errorFlag, setErrorFlag] = useState(false);
     return (
         <div>
             <SWContext.Provider value={
-            {hero, changeHero:setHero
-            }}>
+            {hero, changeHero:setHero, errorFlag, changeErrorFlag:setErrorFlag}}>
                 <Header/>
                 <Main/>
                 <Footer/>

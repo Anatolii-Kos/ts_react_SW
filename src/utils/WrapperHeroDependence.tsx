@@ -9,13 +9,17 @@ import {WrapperHOC, WrapperProps} from "./types";
 export const WrapperHeroDependence: WrapperHOC<WrapperProps> = (WrappedComponent) => {
     return function EffectComponent(props) {
         const { heroId = defaultHero } = useParams();
-        const { changeHero } = useContext(SWContext);
-
+        const { changeHero, changeErrorFlag, errorFlag} = useContext(SWContext);
+        changeErrorFlag(false)
         useEffect(() => {
             if (characters[heroId]) {
                 changeHero(heroId);
             }
-        }, [heroId, changeHero]);
+            else{
+                changeErrorFlag(true)
+                }
+
+        }, [heroId, errorFlag]);
 
         return characters[heroId] ? (
             <div>

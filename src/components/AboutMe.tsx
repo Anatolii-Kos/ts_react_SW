@@ -1,28 +1,17 @@
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {characters, defaultHero, period_month} from "../utils/constants.js";
 import {HeroInfo} from "../utils/types";
-import {useNavigate, useParams} from "react-router";
-import {SWContext} from "../utils/context.ts";
-import ErrorPage from "./ErrorPage.tsx";
-
+import {useParams} from "react-router";
+import {WrapperHeroDependence} from "../utils/WrapperHeroDependence.tsx";
 
 const AboutMe = () => {
     const [hero, setHero] = useState({} as HeroInfo);
-    const navigate = useNavigate();
     const {heroId =defaultHero} = useParams();
-    const {changeHero}=useContext(SWContext);
-
 
     useEffect(() => {
-        if(!(heroId in characters)){
-            navigate("/error");
-            return;
-        }
-        changeHero(heroId);
         const hero = JSON.parse(localStorage.getItem(heroId)!);
         if (hero && ((Date.now() - hero.timestamp) < period_month)) {
             setHero(hero.payload);
-
         } else {
             fetch(characters[heroId].url)
                 .then(response => response.json())
@@ -47,7 +36,7 @@ const AboutMe = () => {
 
     }, [heroId])
 
-    return characters[heroId] ? (
+    return  (
         <>
             {(!!hero) &&
                 <div className={'text-[2em] text-justify tracking-widest leading-14 ml-8'}>
@@ -58,7 +47,7 @@ const AboutMe = () => {
                 </div>
             }
         </>
-    ) : <ErrorPage/>;
+    );
 };
 
-export default AboutMe;
+export default  WrapperHeroDependence(AboutMe);
