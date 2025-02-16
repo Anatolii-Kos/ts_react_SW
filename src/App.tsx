@@ -3,23 +3,23 @@ import Header from "./components/Header.tsx";
 import Main from "./components/Main.tsx";
 import Footer from "./components/Footer.tsx";
 import {useState} from "react";
-import {characters, Swcontext} from "./utils/constants.ts";
+import {defaultHero} from "./utils/constants.ts";
+import { SWContext } from './utils/context.ts';
+
+
 
 
 function App() {
-    const [title, setTitle] = useState(characters.luke.name);
-    const changeTitle = (title:string) => {
-        setTitle(title);
-    }
+    const [hero, setHero] = useState(defaultHero);
     return (
         <div>
-            <Swcontext.Provider value={
-            {title, changeTitle}
-            }>
+            <SWContext.Provider value={
+            {hero, changeHero:setHero
+            }}>
                 <Header/>
                 <Main/>
                 <Footer/>
-            </Swcontext.Provider>
+            </SWContext.Provider>
         </div>
     )
 }

@@ -1,11 +1,15 @@
 import {friends} from "../utils/constants.js";
 import Friend from "./Friend.jsx";
+import {SWContext} from "../utils/context.ts";
+import {useContext} from "react";
+
 
 const DreamTeam = () => {
+    const {hero} = useContext(SWContext);
     return (
         <section className={'float-right w-1/2 grid grid-cols-3 border border-base-color rounded-b-2xl gap-1 ml-2'}>
             <h2 className={'col-span-3 text-center text-2xl'}>Dream team</h2>
-            {friends.map((friend, index) => <Friend picture={friend} key={index} pos={index + 1} />)}
+            {friends.filter(f => f !== hero).map((f, i) => <Friend friend={f} key={f} pos={i + 1} />)}
         </section>
     );
 };

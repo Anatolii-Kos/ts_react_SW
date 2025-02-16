@@ -1,5 +1,3 @@
-
-
 export interface HeroInfo {
     name: string;
     gender: string;
@@ -26,7 +24,13 @@ export interface Characters {
     [key: string]: Hero,
 }
 
-export interface SWcontext {
-    title: string | null,
-    changeTitle: (title: string) => void,
+export interface SWContextValue {
+    hero: string,
+    changeHero: (hero: string) => void,
+}
+
+export type Wrapper = (Component: WrapperProps) => React.FC;
+
+export interface WrapperProps {
+    children: ReactNode;
 }
