@@ -1,3 +1,5 @@
+import React, {ReactNode} from "react";
+
 export interface HeroInfo {
     name: string;
     gender: string;
@@ -29,8 +31,8 @@ export interface SWContextValue {
     changeHero: (hero: string) => void,
 }
 
-export type Wrapper = (Component: WrapperProps) => React.FC;
+export type WrapperHOC<P extends object> = (Component: React.FC<P>) => React.FC<P>;
 
 export interface WrapperProps {
-    children: ReactNode;
+    children?: React.ReactNode | void | React.FC;
 }
